@@ -25,8 +25,10 @@ namespace Core
             var audioPlayerSingleton = FindObjectOfType<AudioPlayerSingleton>();
             var sceneManagerSingleton = FindObjectOfType<SceneManagerSingleton>();
 
-            audioPlayerSingleton.Construct();
-            sceneManagerSingleton.Construct();
+            if (!AudioPlayerSingleton.Instance)
+                audioPlayerSingleton.Construct();
+            if (!SceneManagerSingleton.Instance)
+                sceneManagerSingleton.Construct();
 
             // Views
             _resourcesView.Construct();
