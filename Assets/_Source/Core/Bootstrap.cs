@@ -8,15 +8,11 @@ namespace Core
 {
     public class Bootstrap : MonoBehaviour
     {
+        [Header("Systems")]
         [SerializeField]
         private InputListener _inputListener;
 
-        [SerializeField]
-        private AudioPlayerSingleton _audioPlayerSingleton;
-
-        [SerializeField]
-        private SceneManagerSingleton _sceneManagerSingleton;
-
+        [Header("Views")]
         [SerializeField]
         private ResourcesView _resourcesView;
 
@@ -26,8 +22,11 @@ namespace Core
         private void Awake()
         {
             // Singletons
-            _audioPlayerSingleton.Construct();
-            _sceneManagerSingleton.Construct();
+            var audioPlayerSingleton = FindObjectOfType<AudioPlayerSingleton>();
+            var sceneManagerSingleton = FindObjectOfType<SceneManagerSingleton>();
+
+            audioPlayerSingleton.Construct();
+            sceneManagerSingleton.Construct();
 
             // Views
             _resourcesView.Construct();
