@@ -28,7 +28,6 @@ namespace ResourceSystem
 
             _addButton.onClick.AddListener(AddResource);
             _removeButton.onClick.AddListener(RemoveResource);
-
             _amountField.onEndEdit.AddListener(UpdateResourceAmout);
             _typeField.onValueChanged.AddListener(UpdateResourceType);
         }

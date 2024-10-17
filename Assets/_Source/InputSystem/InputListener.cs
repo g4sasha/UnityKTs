@@ -13,10 +13,12 @@ namespace InputSystem
         private KeyCode _playTestSoundKey;
 
         private AudioPlayerSingleton _audioPlayer;
+        private SceneManagerSingleton _sceneManager;
 
         public void Construct()
         {
             _audioPlayer = AudioPlayerSingleton.Instance;
+            _sceneManager = SceneManagerSingleton.Instance;
         }
 
         private void Update()
@@ -29,7 +31,7 @@ namespace InputSystem
         {
             if (Input.GetKeyDown(_restartSceneKey))
             {
-                SceneManagerSingleton.Instance.Restart();
+                _sceneManager.Restart();
             }
         }
 
