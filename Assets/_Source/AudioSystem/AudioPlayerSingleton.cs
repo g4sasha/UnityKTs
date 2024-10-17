@@ -6,7 +6,13 @@ namespace AudioSystem
     {
         public static AudioPlayerSingleton Instance { get; private set; }
 
-        private void Awake()
+        [field: SerializeField]
+        public AudioClip TestSound { get; private set; }
+
+        [SerializeField]
+        private AudioSource _audioSource;
+
+        public void Construct()
         {
             if (Instance)
             {
@@ -18,9 +24,9 @@ namespace AudioSystem
             DontDestroyOnLoad(gameObject);
         }
 
-        public void PlaySound()
+        public void PlaySound(AudioClip audioClip)
         {
-            Debug.Log("Playing sound");
+            _audioSource.PlayOneShot(audioClip);
         }
     }
 }
