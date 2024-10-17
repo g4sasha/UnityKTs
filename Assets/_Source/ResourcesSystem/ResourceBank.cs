@@ -16,6 +16,8 @@ namespace ResourceSystem
             }
         }
 
+        public event Action<ResourceType, int> OnResourcesChanged;
+
         private static ResourceBank _instance;
         private Dictionary<ResourceType, Resource> _resources;
 
@@ -36,12 +38,14 @@ namespace ResourceSystem
         {
             if (_resources.ContainsKey(type))
             {
-                _resources.Add(type, new Resource(type, _resources[type].Amount + amount));
+                _resources[type].Amount += amount;
             }
             else
             {
-                throw new ArgumentException("Resource type doesn't exist");
+                _resources.Add(type, new Resource(type, _resources[type].Amount + amount));
             }
+
+            OnResourcesChanged?.Invoke(type, _resources[type].Amount);
         }
 
         public int GetResourceAmount(ResourceType type)

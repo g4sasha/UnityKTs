@@ -927,6 +927,7 @@ GameObject:
   - component: {fileID: 685986583}
   - component: {fileID: 685986582}
   - component: {fileID: 685986584}
+  - component: {fileID: 685986585}
   m_Layer: 5
   m_Name: ResourcesView
   m_TagString: Untagged
@@ -953,7 +954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -85.08499}
+  m_AnchoredPosition: {x: 0, y: -85.08594}
   m_SizeDelta: {x: 0, y: 170.16998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685986582
@@ -1020,6 +1021,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &685986585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685986580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189e440df2f9af7488f54abdf4b32bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goldField: {fileID: 719077205}
+  _woodField: {fileID: 429801714}
+  _stoneField: {fileID: 206054613}
 --- !u!1 &719077203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,7 +1182,7 @@ GameObject:
   - component: {fileID: 896320624}
   - component: {fileID: 896320623}
   m_Layer: 5
-  m_Name: AddMenu
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1183,8 +1199,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1735338202}
+  m_Children: []
   m_Father: {fileID: 1049569064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1495,6 +1510,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 896320622}
+  - {fileID: 1735338202}
   - {fileID: 685986581}
   - {fileID: 2057493167}
   m_Father: {fileID: 193084555}
@@ -2018,7 +2034,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1383305424}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1177799783
 GameObject:
@@ -2579,39 +2595,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379072972}
   m_CullTransparentMesh: 1
---- !u!1 &1383305423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1383305424}
-  m_Layer: 0
-  m_Name: ---Singletons---
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1383305424
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1383305423}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1511355944}
-  - {fileID: 1177419299}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1409787411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2761,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1383305424}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1511355945
 AudioSource:
@@ -3117,6 +3100,8 @@ MonoBehaviour:
   _inputListener: {fileID: 2076122894}
   _audioPlayerSingleton: {fileID: 1511355943}
   _sceneManagerSingleton: {fileID: 1177419298}
+  _resourcesView: {fileID: 685986585}
+  _resourcesControlView: {fileID: 1735338205}
 --- !u!4 &1697135985
 Transform:
   m_ObjectHideFlags: 0
@@ -3195,8 +3180,9 @@ GameObject:
   - component: {fileID: 1735338202}
   - component: {fileID: 1735338204}
   - component: {fileID: 1735338203}
+  - component: {fileID: 1735338205}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ResourcesControlView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3209,7 +3195,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735338201}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3218,7 +3204,7 @@ RectTransform:
   - {fileID: 1335301543}
   - {fileID: 1409787412}
   - {fileID: 1779211322}
-  m_Father: {fileID: 896320622}
+  m_Father: {fileID: 1049569064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3263,6 +3249,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735338201}
   m_CullTransparentMesh: 1
+--- !u!114 &1735338205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735338201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189044f411754534285d1cf1f6687b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountField: {fileID: 1379072974}
+  _typeField: {fileID: 1335301544}
+  _addButton: {fileID: 1409787413}
+  _removeButton: {fileID: 1779211323}
 --- !u!1 &1779211321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3631,7 +3633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 377.89, y: 119.88}
+  m_AnchoredPosition: {x: 377.89062, y: 119.88086}
   m_SizeDelta: {x: 655.78, y: 139.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057493168
@@ -3783,7 +3785,8 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1511355944}
+  - {fileID: 1177419299}
   - {fileID: 519420032}
-  - {fileID: 1383305424}
   - {fileID: 504629811}
   - {fileID: 193084555}
