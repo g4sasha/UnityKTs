@@ -2,7 +2,7 @@ using ResourceSystem.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ResourceSystem
+namespace ResourceSystem.Services
 {
     public class ResourceViewService
     {

@@ -7,6 +7,6 @@ namespace ResourceSystem.Data
     public class ResourcesDataSO : ScriptableObject
     {
         [field: SerializeField]
-        public List<ResourcesViewData> ResourcesDataList { get; private set; }
+        public List<ResourcesViewData> ResourcesData { get; private set; }
     }
 }
