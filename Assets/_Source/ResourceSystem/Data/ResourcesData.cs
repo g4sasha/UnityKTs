@@ -9,9 +9,9 @@ namespace ResourceSystem.Data
         public ResourceType ResourceType { get; private set; }
 
         [field: SerializeField]
-        public float EnableTime { get; private set; }
+        public float DecayTime { get; private set; }
 
         [field: SerializeField]
-        public float DisableTime { get; private set; }
+        public float EnrichmentTime { get; private set; }
     }
 }
