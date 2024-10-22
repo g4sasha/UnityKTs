@@ -1,3 +1,4 @@
+using Core;
 using ResourceSystem.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,8 @@ namespace ResourceSystem.Services
             {
                 if (_viewData == null)
                 {
-                    _viewData = Resources.Load("ResourcesViewData") as ResourcesViewDataSO;
+                    _viewData =
+                        Resources.Load(PathData.RESOURCE_VIEW_DATA_PATH) as ResourcesViewDataSO;
                 }
 
                 return _viewData;
