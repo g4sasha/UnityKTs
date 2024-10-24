@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ResourcesData>k__BackingField:
   - <ResourceType>k__BackingField: 0
-    <DecayTime>k__BackingField: 60
-    <EnrichmentTime>k__BackingField: 5
+    <DecayTime>k__BackingField: 5
+    <EnrichmentTime>k__BackingField: 2
   - <ResourceType>k__BackingField: 1
-    <DecayTime>k__BackingField: 40
-    <EnrichmentTime>k__BackingField: 10
+    <DecayTime>k__BackingField: 5
+    <EnrichmentTime>k__BackingField: 1

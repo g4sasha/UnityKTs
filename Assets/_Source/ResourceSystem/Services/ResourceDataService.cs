@@ -23,7 +23,7 @@ namespace ResourceSystem.Services
             {
                 if (_data == null)
                 {
-                    _data = Resources.Load(PathData.RESOURCE_VIEW_DATA_PATH) as ResourcesDataSO;
+                    _data = Resources.Load(PathData.RESOURCES_DATA_PATH) as ResourcesDataSO;
                 }
 
                 return _data;
@@ -36,6 +36,7 @@ namespace ResourceSystem.Services
         {
             decayTime = 0f;
 
+            //Debug.Log(Data);
             if (Data.TryGetDecayTime(type, out var newDecayTime))
             {
                 decayTime = newDecayTime;
