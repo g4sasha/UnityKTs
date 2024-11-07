@@ -14,8 +14,8 @@ public class SizeChanger : MonoBehaviour
     {
         if (other.gameObject.IsInLayer(_playerLayer))
         {
-            var pl = other.GetComponent<PlayerSetup>();
-            pl.Scale *= _sizeModifier;
+            var player = other.GetComponent<PlayerSetup>();
+            player.ChangeScale(_sizeModifier);
             Destroy(gameObject);
         }
     }

@@ -5,8 +5,8 @@ namespace Player
 {
     public class PlayerSetup : MonoBehaviour
     {
-        public float Scale = 1f;
-
+        [SerializeField]
+        private float _scale = 1f;
         public bool IsFacingRight { get; private set; } = true;
 
         [SerializeField]
@@ -23,13 +23,20 @@ namespace Player
         private void Awake()
         {
             _movement = new PlayerMovement(_rigidbody, _playerData);
+            ApplyScale();
         }
 
         private void Update()
         {
             Move();
-            Up();
+            Jump();
             Flip();
+        }
+
+        public void ChangeScale(float sizeModifier)
+        {
+            _scale *= sizeModifier;
+            ApplyScale(IsFacingRight ? 1 : -1);
         }
 
         private void Move()
@@ -37,29 +44,39 @@ namespace Player
             _movement.Move(_inputListener.Horizontal);
         }
 
-        private void Up()
+        private void Jump()
         {
             if (_inputListener.IsUp)
             {
                 _movement.Up();
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                _rigidbody.angularVelocity = 0f;
+                ResetRotation();
             }
         }
 
         private void Flip()
         {
-            if (_rigidbody.linearVelocityX >= _playerData.Speed / 2f)
+            float velocityX = _rigidbody.linearVelocityX;
+            if (velocityX >= _playerData.Speed / 2f && !IsFacingRight)
             {
-                transform.localScale = new Vector3(1f, 1f, 1f) * Scale;
                 IsFacingRight = true;
+                ApplyScale(1);
             }
-
-            if (_rigidbody.linearVelocityX <= -_playerData.Speed / 2f)
+            else if (velocityX <= -_playerData.Speed / 2f && IsFacingRight)
             {
-                transform.localScale = new Vector3(-1f, 1f, 1f) * Scale;
                 IsFacingRight = false;
+                ApplyScale(-1);
             }
+        }
+
+        private void ApplyScale(float direction = 1)
+        {
+            transform.localScale = new Vector3(direction, 1f, 1f) * _scale;
+        }
+
+        private void ResetRotation()
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            _rigidbody.angularVelocity = 0f;
         }
     }
 }
