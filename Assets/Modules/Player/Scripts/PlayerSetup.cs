@@ -40,6 +40,8 @@ namespace Player
             if (_inputListener.IsUp)
             {
                 _movement.Up();
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                _rigidbody.angularVelocity = 0f;
             }
         }
 
@@ -47,13 +49,13 @@ namespace Player
         {
             if (_rigidbody.linearVelocityX >= _playerData.Speed / 2f)
             {
-                transform.localScale = Vector2.right;
+                transform.localScale = new Vector3(1f, 1f, 1f);
                 IsFacingRight = true;
             }
 
             if (_rigidbody.linearVelocityX <= -_playerData.Speed / 2f)
             {
-                transform.localScale = Vector2.left;
+                transform.localScale = new Vector3(-1f, 1f, 1f);
                 IsFacingRight = false;
             }
         }
