@@ -5,6 +5,8 @@ namespace Player
 {
     public class PlayerSetup : MonoBehaviour
     {
+        public float Scale = 1f;
+
         public bool IsFacingRight { get; private set; } = true;
 
         [SerializeField]
@@ -49,13 +51,13 @@ namespace Player
         {
             if (_rigidbody.linearVelocityX >= _playerData.Speed / 2f)
             {
-                transform.localScale = new Vector3(1f, 1f, 1f);
+                transform.localScale = new Vector3(1f, 1f, 1f) * Scale;
                 IsFacingRight = true;
             }
 
             if (_rigidbody.linearVelocityX <= -_playerData.Speed / 2f)
             {
-                transform.localScale = new Vector3(-1f, 1f, 1f);
+                transform.localScale = new Vector3(-1f, 1f, 1f) * Scale;
                 IsFacingRight = false;
             }
         }
