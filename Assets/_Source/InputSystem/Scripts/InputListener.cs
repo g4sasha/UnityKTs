@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace InputSystem
 {
@@ -13,6 +14,7 @@ namespace InputSystem
         {
             HandleMovement();
             HandleJump();
+            HandleRestart();
         }
 
         private void HandleMovement()
@@ -29,6 +31,14 @@ namespace InputSystem
             else
             {
                 IsUp = false;
+            }
+        }
+
+        private void HandleRestart()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
     }

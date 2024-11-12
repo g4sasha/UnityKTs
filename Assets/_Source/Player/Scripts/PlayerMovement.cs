@@ -13,11 +13,11 @@ namespace Player
             _data = data;
         }
 
-        public void Move(float moveX)
+        public void Move(float moveX, float speedModifier)
         {
             if (Mathf.Abs(_rigidbody.linearVelocityY) >= 1f)
             {
-                _rigidbody.linearVelocityX = moveX * _data.Speed;
+                _rigidbody.linearVelocityX = moveX * _data.Speed * speedModifier;
             }
         }
 

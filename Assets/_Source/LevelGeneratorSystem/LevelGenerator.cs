@@ -3,28 +3,20 @@ using UnityEngine;
 
 namespace LevelGeneratorSystem
 {
-    public class LevelGenerator : MonoBehaviour
+    public class LevelGenerator
     {
-        private const float SEGMENT_LENGTH = 28.0f;
-
-        [SerializeField]
-        private int _levelLength;
-
-        [SerializeField]
         private List<GameObject> _levelSegments;
 
-        private void Awake()
-        {
-            GenerateLevel(_levelLength);
-        }
+        public LevelGenerator(List<GameObject> levelSegments) => _levelSegments = levelSegments;
 
         public void GenerateLevel(int length)
         {
             for (int i = 1; i < length; i++)
             {
-                Instantiate(
-                    _levelSegments[Random.Range(0, _levelSegments.Count)],
-                    new Vector3(SEGMENT_LENGTH * i, 0, 0),
+                var randomSegment = _levelSegments[Random.Range(0, _levelSegments.Count)];
+                GameObject.Instantiate(
+                    randomSegment,
+                    new Vector3(randomSegment.transform.GetChild(0).localScale.x * i, 0, 0),
                     Quaternion.identity
                 );
             }

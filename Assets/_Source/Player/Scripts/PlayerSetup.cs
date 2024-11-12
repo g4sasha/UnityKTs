@@ -24,6 +24,7 @@ namespace Player
         private LayerMask _respawnLayer;
 
         private PlayerMovement _movement;
+        private float _speedModifier = 1f;
 
         private void Awake()
         {
@@ -52,9 +53,14 @@ namespace Player
             ApplyScale(IsFacingRight ? 1 : -1);
         }
 
+        public void ChangeSpeed(float speedModifier)
+        {
+            _speedModifier *= speedModifier;
+        }
+
         private void Move()
         {
-            _movement.Move(_inputListener.Horizontal);
+            _movement.Move(_inputListener.Horizontal, _speedModifier);
         }
 
         private void Jump()
