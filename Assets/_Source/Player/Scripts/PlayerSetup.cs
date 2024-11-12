@@ -1,5 +1,7 @@
+using Extention;
 using InputSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -18,6 +20,9 @@ namespace Player
         [SerializeField]
         private Rigidbody2D _rigidbody;
 
+        [SerializeField]
+        private LayerMask _respawnLayer;
+
         private PlayerMovement _movement;
 
         private void Awake()
@@ -31,6 +36,14 @@ namespace Player
             Move();
             Jump();
             Flip();
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.IsInLayer(_respawnLayer))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
 
         public void ChangeScale(float sizeModifier)
