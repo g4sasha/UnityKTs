@@ -23,11 +23,13 @@ namespace Camera
 
         private void LateUpdate()
         {
-            // var cameraPos = _mainCamera.transform.position;
+            var cameraPos = _mainCamera.transform.position;
             var offsetX = Vector2.right * (_target.IsFacingRight ? _facingOffset : -_facingOffset);
             var targetPos = _target.transform.position + (Vector3)offsetX;
+            var ix = Mathf.Lerp(cameraPos.x, targetPos.x, Time.deltaTime * _cameraSpeed);
+            var iy = Mathf.Lerp(cameraPos.y, targetPos.y, Time.deltaTime * _cameraSpeed);
 
-            _mainCamera.transform.position = targetPos;
+            _mainCamera.transform.position = new Vector3(ix, iy, cameraPos.z);
         }
     }
 }

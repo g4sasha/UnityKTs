@@ -739,8 +739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b00d5b511647f24e9e46ed9ce6b070f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraSpeed: 32.3
-  _facingOffset: 1
+  _cameraSpeed: 5
+  _facingOffset: 3
   _target: {fileID: 298701746}
 --- !u!1 &619394800
 GameObject:

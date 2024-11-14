@@ -1,3 +1,4 @@
+using System.Collections;
 using Extention;
 using InputSystem;
 using UnityEngine;
@@ -63,12 +64,13 @@ namespace Player
             _movement.Move(_inputListener.Horizontal, _speedModifier);
         }
 
+        // Вызов ResetRotation() в методе Jump
         private void Jump()
         {
             if (_inputListener.IsUp)
             {
                 _movement.Up();
-                ResetRotation();
+                ResetRotation(0f, 0.5f); // Плавный поворот на 90 градусов за полсекунды
             }
         }
 
@@ -92,9 +94,31 @@ namespace Player
             transform.localScale = new Vector3(direction, 1f, 1f) * _scale;
         }
 
-        private void ResetRotation()
+        // Метод для запуска плавного поворота на нужный угол
+        private void ResetRotation(float targetAngle, float duration)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            StartCoroutine(ResetRotationCoroutine(targetAngle, duration));
+        }
+
+        // Интерполяция вращения к 90 градусам
+        private IEnumerator ResetRotationCoroutine(float targetAngle, float duration)
+        {
+            Quaternion startRotation = transform.rotation;
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                transform.rotation = Quaternion.Lerp(
+                    startRotation,
+                    targetRotation,
+                    elapsedTime / duration
+                );
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.rotation = targetRotation;
             _rigidbody.angularVelocity = 0f;
         }
     }
