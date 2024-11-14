@@ -6,8 +6,13 @@ namespace LevelGeneratorSystem
     public class LevelGenerator
     {
         private List<GameObject> _levelSegments;
+        private GameObject _finishSegment;
 
-        public LevelGenerator(List<GameObject> levelSegments) => _levelSegments = levelSegments;
+        public LevelGenerator(List<GameObject> levelSegments, GameObject finishSegment)
+        {
+            _levelSegments = levelSegments;
+            _finishSegment = finishSegment;
+        }
 
         public void GenerateLevel(int length)
         {
@@ -20,6 +25,12 @@ namespace LevelGeneratorSystem
                     Quaternion.identity
                 );
             }
+
+            GameObject.Instantiate(
+                _finishSegment,
+                new Vector3(_finishSegment.transform.GetChild(0).localScale.x * length, 0, 0),
+                Quaternion.identity
+            );
         }
     }
 }

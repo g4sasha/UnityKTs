@@ -1056,6 +1056,7 @@ MonoBehaviour:
   - {fileID: 5185799913515110388, guid: c959923563a002b4c99fc4475143318d, type: 3}
   - {fileID: 1251561840398654858, guid: 6d3f0dcd84c8d9c44b5bada8954f197a, type: 3}
   - {fileID: 1763770657758244219, guid: 435b1fd77e6928749b2de34688026c58, type: 3}
+  _finishSegment: {fileID: 5960418419421296809, guid: 6218de21ec7986d49b30b96ff2d06dcf, type: 3}
 --- !u!4 &1472248334
 Transform:
   m_ObjectHideFlags: 0
