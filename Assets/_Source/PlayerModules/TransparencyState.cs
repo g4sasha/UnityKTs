@@ -1,36 +1,51 @@
 using Core;
-using UnityEngine;
 
 namespace PlayerModules
 {
     public class TransparencyState : IState
     {
-        private PlayerInput input;
-        private PlayerCombat combat;
-        private bool isTransparent;
+        private PlayerInput _input;
+        private PlayerCombat _combat;
+        private TMPro.TextMeshProUGUI _hudText;
+        private bool _isTransparent;
 
-        public TransparencyState(PlayerInput input, PlayerCombat combat)
+        public TransparencyState(
+            PlayerInput input,
+            PlayerCombat combat,
+            TMPro.TextMeshProUGUI hudText
+        )
         {
-            this.input = input;
-            this.combat = combat;
+            _input = input;
+            _combat = combat;
+            _hudText = hudText;
+            _isTransparent = false;
         }
 
-        public void Enter() { }
+        public void Enter()
+        {
+            _hudText.text = "Current State: Transparency";
+            SetTransparency(false);
+        }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            SetTransparency(false);
+        }
 
         public void Update()
         {
-            if (input.AttackPressed)
+            if (_input.AttackPressed)
             {
-                ToggleTransparency();
+                _isTransparent = !_isTransparent;
+                SetTransparency(_isTransparent);
             }
         }
 
-        private void ToggleTransparency()
+        private void SetTransparency(bool transparent)
         {
-            isTransparent = !isTransparent;
-            combat.spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, isTransparent ? 0.5f : 1.0f);
+            var color = _combat.SpriteRenderer.color;
+            color.a = transparent ? 0.5f : 1f;
+            _combat.SpriteRenderer.color = color;
         }
     }
 }

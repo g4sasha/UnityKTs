@@ -6,48 +6,44 @@ namespace Core
     public class Bootstrap : MonoBehaviour
     {
         [SerializeField]
-        private PlayerInput playerInput; // Ссылка на компонент ввода
+        private PlayerInput _playerInput;
 
         [SerializeField]
-        private PlayerMovement playerMovement; // Ссылка на компонент движения
+        private PlayerMovement _playerMovement;
 
         [SerializeField]
-        private PlayerCombat playerCombat; // Ссылка на компонент боя
+        private PlayerCombat _playerCombat;
 
-        private StateMachine stateMachine;
+        [SerializeField]
+        private TMPro.TextMeshProUGUI _hudText;
 
-        void Start()
+        private StateMachine _stateMachine;
+
+        private void Start()
         {
-            // Инициализация StateMachine
-            stateMachine = new StateMachine();
+            _stateMachine = new StateMachine();
 
-            // Создание состояний
-            var shootingState = new ShootingState(playerInput, playerCombat);
-            var highlightingState = new HighlightingState(playerInput, playerCombat);
-            var transparencyState = new TransparencyState(playerInput, playerCombat);
+            var shootingState = new ShootingState(_playerInput, _playerCombat, _hudText);
+            var highlightingState = new HighlightingState(_playerInput, _playerCombat, _hudText);
+            var transparencyState = new TransparencyState(_playerInput, _playerCombat, _hudText);
 
-            // Добавление состояний в StateMachine
-            stateMachine.AddState(shootingState);
-            stateMachine.AddState(highlightingState);
-            stateMachine.AddState(transparencyState);
+            _stateMachine.AddState(shootingState);
+            _stateMachine.AddState(highlightingState);
+            _stateMachine.AddState(transparencyState);
 
-            // Установка начального состояния
-            stateMachine.SetInitialState(shootingState);
+            _stateMachine.SetInitialState(shootingState);
         }
 
-        void Update()
+        private void Update()
         {
-            // Переключение состояний по Enter
-            if (playerInput.EnterPressed)
+            if (_playerInput.EnterPressed)
             {
-                stateMachine.TransitionToNextState();
+                _stateMachine.TransitionToNextState();
             }
 
-            // Передача ввода для движения
-            playerMovement.Move(playerInput.MovementInput);
+            _playerMovement.Move(_playerInput.MovementInput);
 
-            // Обновление текущего состояния
-            stateMachine.Update();
+            _stateMachine.Update();
         }
     }
 }

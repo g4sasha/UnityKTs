@@ -5,22 +5,27 @@ namespace PlayerModules
 {
     public class ShootingState : IState
     {
-        private PlayerInput input;
-        private PlayerCombat combat;
+        private PlayerInput _input;
+        private PlayerCombat _combat;
+        private TMPro.TextMeshProUGUI _hudText;
 
-        public ShootingState(PlayerInput input, PlayerCombat combat)
+        public ShootingState(PlayerInput input, PlayerCombat combat, TMPro.TextMeshProUGUI hudText)
         {
-            this.input = input;
-            this.combat = combat;
+            _input = input;
+            _combat = combat;
+            _hudText = hudText;
         }
 
-        public void Enter() { }
+        public void Enter()
+        {
+            _hudText.text = "Current State: Shooting";
+        }
 
         public void Exit() { }
 
         public void Update()
         {
-            if (input.AttackPressed)
+            if (_input.AttackPressed)
             {
                 Shoot();
             }
@@ -28,12 +33,11 @@ namespace PlayerModules
 
         private void Shoot()
         {
-            GameObject bullet = Object.Instantiate(
-                combat.bulletPrefab,
-                combat.firePoint.position,
+            Object.Instantiate(
+                _combat.BulletPrefab,
+                _combat.FirePoint.position,
                 Quaternion.identity
             );
-            bullet.GetComponent<Rigidbody2D>().velocity = Vector2.right * 10f;
         }
     }
 }

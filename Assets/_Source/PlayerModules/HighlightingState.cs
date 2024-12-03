@@ -4,32 +4,41 @@ namespace PlayerModules
 {
     public class HighlightingState : IState
     {
-        private PlayerInput input;
-        private PlayerCombat combat;
-        private bool isHighlighted;
+        private PlayerInput _input;
+        private PlayerCombat _combat;
+        private TMPro.TextMeshProUGUI _hudText;
+        private bool _isHighlighting;
 
-        public HighlightingState(PlayerInput input, PlayerCombat combat)
+        public HighlightingState(
+            PlayerInput input,
+            PlayerCombat combat,
+            TMPro.TextMeshProUGUI hudText
+        )
         {
-            this.input = input;
-            this.combat = combat;
+            _input = input;
+            _combat = combat;
+            _hudText = hudText;
+            _isHighlighting = false;
         }
 
-        public void Enter() { }
+        public void Enter()
+        {
+            _hudText.text = "Current State: Highlighting";
+            _combat.RedZone.SetActive(false);
+        }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            _combat.RedZone.SetActive(false);
+        }
 
         public void Update()
         {
-            if (input.AttackPressed)
+            if (_input.AttackPressed)
             {
-                ToggleHighlight();
+                _isHighlighting = !_isHighlighting;
+                _combat.RedZone.SetActive(_isHighlighting);
             }
-        }
-
-        private void ToggleHighlight()
-        {
-            isHighlighted = !isHighlighted;
-            combat.redZone.SetActive(isHighlighted);
         }
     }
 }
